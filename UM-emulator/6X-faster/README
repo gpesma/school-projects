@@ -1,0 +1,16 @@
+By: George Pesmazoglou and Vivek Ramchandran
+
+We received life saving help from the wonderful Wesley Wei as well as
+Charlie Meyer and a couple other TAs.
+
+The function loadval takes up the most time.  It uses a push at the
+beginning of the function, and then simply store the amounts we want to
+shift the bits by, and then shift the bits left and shift the bits to the
+right.  It is an extremely simply function, that simply takes the most time
+because of the amount that it is called.  One way to make it slightly better
+would be to not store the amount we have to shift the bits by in memory and
+simply shift the amount of bytes by a certain value.  This would cut down
+extra references to memory and make the code slightly faster.
+
+We spent roughly 5 hours analyzing the problems and roughly 20-25 hours 
+solving the problems after analysis.
