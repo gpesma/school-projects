@@ -1,0 +1,56 @@
+                  /**********************************
+                  *                                 *
+                  *   COMP40 Assignment 4 - Arith   *
+                  *                                 *
+                  **********************************/
+
+
+    1. Assignment done by: Georgios Pesmazoglou and Alexandru Ungureanu
+
+    2. Help: We received helpful information and help from the TAs in Halligan
+
+    3. Implementation: Based on the tests we've done, everything has been 
+                       implemented correctly.
+    
+    4. Architecture: We used to following interfaces to implement the program:
+
+            * compress40 - "controller" interface performing the main logic of
+                           the program (compression and decompression)
+
+            * compressed_io - interface responsible for reading and writing
+                              compressed images
+
+            * bitpack - interface responsible for extracting signed/unsigned 
+                        integers from 64-bit words, and updating words by 
+                        replacing sequences of bits with other sequences of 
+                        bits corresponding to signed/unsigned integers
+
+            * pixConversions - interface responsible for performing pixel
+                               conversions (RGB - video,  lumas - cosine
+                               coefficients)
+ 
+            * floatIntScale - interface responsible for scaling floating-
+                              point numbers to signed/unsigned integers
+                              and unscaling signed/unsigned integers to
+                              floating-point numbers
+
+            The main function of the program (in 40image.c) handles the command
+            line arguments and calls the appropriate compress/decompress 
+            function from compress40. 
+
+            The compress40 interface uses the public methods in pixConversions,
+            compressed_io, pnm, floatIntScale, bitpack to compress/decompress. 
+            It knows how to use those functions, but it doesn't know how the
+            conversions, input-output methods and bit manipulation methods were
+            implemented. pixConversions, compressed_io, floatIntScale, bitpack
+            are independent modules and know nothing about each other.
+
+            Interface "hierarchy":          
+                                        pixConversion
+            40image ->  compress40 ->  floatIntsScale
+                                        compressed_io
+                                           bitpack
+
+    5. Hours spent analyzing the problems posed in the assignment: 12 hours
+
+    6. Hours spent solving the problems after the analysis: 18 hours
