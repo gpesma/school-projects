@@ -1,0 +1,108 @@
+                         
+
+            **********************************
+            *                                *
+            *       COMP 40 Assignment 3     *
+            *                                *
+            **********************************
+
+
+
+        1. Project done by: Georgios Pesmazoglou, Alexandru Ungureanu.
+
+
+        2. Received help from the TAs through Halligan Helper.      
+
+
+        3. Based on the testing we have done so far, all components of the 
+           assignment have been implemented correctly.
+
+
+        4. In order to implement the ppmtrans program, we added a new
+           interface, transformations. The transformations interface has 3
+           public   functions: rotate, flip, and transpose. Each of these
+           function handle one specific transformation that needs to be
+           performed in the ppmtrans program.
+
+           ppmtrans has access to the public methods of transformations and
+           calls the methods to perform the desired operation on the image.
+           Thus, with this abstraction the user doesn't know how the
+           transformations methods are implemented, and the transformations
+           functions don't know how the 2D array representing the pixels of the
+           image is represented in memory (blocked or unblocked). The 
+           implementation that handles the command line arguments to choose the
+           correct representation of the 2D array and the map function to be
+           used is in ppmtrans.c.
+
+           Both ppmtrans and the transformations interface have access to the
+           pnm interface, which allows for reading, writing and freeing an
+           image. 
+
+
+        5.
+                Picture 1: nrs-paper.ppm
+                Pnmscale: 20
+                Size of picture: 130.6kb
+        
+        Block-major-mapping:
+                        Rotate 90       Rotate 180      Rotate270
+        Total time      5575849         6194488         6499600
+        Time per pixel  128.14509       142.36275       149.37489
+        Instructions    128             142             149
+
+
+        Row-major-mapping:
+                        Rotate 90       Rotate 180      Rotate270
+        Total time      3309392         3472928         4135355
+        Time per pixel  76.05700        79.81541        95.03941
+        Instructions    76              80              95
+        
+        
+        Col-major-mapping:
+                        Rotate 90       Rotate 180      Rotate270
+        Total time      4250298         4357262         3907373
+        Time per pixel  97.68105        100.13932       89.79989
+        Instructions    98              100             90
+
+
+
+                Picture 2: west.ppm
+                Pnmscale: 15
+                Size of picture: 237.2 kb
+
+        Block-major-mapping:
+                        Rotate 90       Rotate 180      Rotate270
+        Total time      9901729         11072494        10549295
+        Time per pixel  125.24956       140.05887       133.44079
+        Instructions    125             140             133
+
+
+        Row-major-mapping:
+                        Rotate 90       Rotate 180      Rotate270
+        Total time      6437123         6477750         7375425
+        Time per pixel  81.42485        81.42485        93.29368
+        Instructions    81              81              93
+        
+        
+        Col-major-mapping:
+                        Rotate 90       Rotate 180      Rotate270
+        Total time      7366740         8307364         6360714
+        Time per pixel  93.18382        105.08202       80.45833
+        Instructions    93              105             80
+
+
+        Computer: LAB 118-A
+        Model name: Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz
+
+        Observations:
+        - The number of instructions is equal to the time per pixels in ns as
+          a billionth of a second and there can be a billion operations per
+	  second according to the spec.
+        - Block mapping is in general the slowest
+        - In general row-major mapping is faster than col-major mapping
+        - Number of instructions is irrelevant of image size
+        - Plain arrays tend to be faster than blocked because of the
+          fewer operations tha occur (division and modulus)
+
+
+        6. Hours worked: 35 hours
