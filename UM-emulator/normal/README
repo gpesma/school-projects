@@ -1,0 +1,77 @@
+UM Readme
+By: George Pesmazoglou and Vivek Ramchandran
+
+We received help from various TAs, but most of the help came
+from the TA Wesley Wei.
+
+To the best of our knowledge, everything has been correctly implemented.
+
+The only significant departure from our design is our creation of a
+struct.  We had initially planned to have a sequence of arrays (with
+the arrays holding the words), but we ran into some problems when 
+working with the size of each of the arrays.  We made a struct that holds
+an array and a size, and we filled the sequence with that struct instead.
+Other than this deviation, we followed our design.
+
+queue, create array, initialize array - segment
+
+all but process and setup registers
+
+Below, the architecture of the system is described:  There will be a um.c
+file that contains the main function and three interfaces with their
+respective implementations. The Segment interface will model the memory.
+Every memory segment will be represented by a struct holding an array and
+the size of the array, and every struct is an element of a Hanson sequence.
+The segment identifiers of segments that have been unmapped will be stored
+in a queue, in order to be reused. Creation of the queue and the struct are
+private, while everything else is shared. I/O device will read in the .um 
+file and save all the instructions in segment 0, as well as writing the 
+output to a file or standard output. It will also be used along with some of
+the instructions (as output). Processor will contain a function for each of
+the 14 instructions. Its parameter will be a word.  Registers will be declared
+globally in this file and will be represented by an array of length 8, that
+contains words. Everything that is done in Processor will be private other
+than a function that calls all the other private functions. The program 
+counter’s only purpose is to iterate through the different instructions, 
+and can be simply just the counter in a for loop. Um will be the file 
+containing the main function. It will use the I/O device to save the program
+to be run on segment 0, then will go through that segment, word by word and
+call the processor to execute the instructions.
+
+We were unfortunately not able to test our UM program in Halligan, so we are
+not quite clear on the exact amount of time our program takes to run as our
+devices will be very different than the lab computers. If we had been able
+to test it, we would have an answer to how long our UM takes to execute 50
+million instructions, but we are not sure.
+
+UM Unit Tests:
+
+TEST DESCIRIPTION
+
+halt - this UM unit test makes sure that halt works by calling it.
+
+halt-verbose - this UM unit test makes sure that halt, loadval,
+and output are all working by calling them on the first register.
+
+print_six - this UM unit test makes sure that input, output, loadval, add,
+and output are working by calling them one at a time.
+
+unit_test_conditional - this UM unit test makes sure that loadval,
+conditional move, and output work by calling them consecutively.
+
+math_test -  this UM unit tests makes sure that loadval, add, multiply,
+divide, and nand work by calling them consecutively.
+
+l_prgm - this UM unit test makes sure that we can load the program by
+calling it.
+
+io_programload - this UM unit test extensively calls loadval, input, 
+and output to make sure that they are all working.
+
+big_memory - this UM unit test tests map and unmap by repeatedly calling
+map and unmap to make sure that the UM can handle lots of map and unmap
+calls.
+
+We spent roughly 25 hours on this assignment.  The first 4 were spent
+analyzing the assignment, the next 6 were spent preparing the design, and the
+last 15 hours were spent solving the problems after the analysis.
